@@ -1,0 +1,25 @@
+{
+  "name": "odia-keyboard",
+  "version": "1.0.0",
+  "description": "Odia phonetic input keyboard driver for web",
+  "main": "src/odia-keyboard.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GnsP/odia-keyboard.git"
+  },
+  "keywords": [
+    "input",
+    "keyboard",
+    "driver",
+    "odia"
+  ],
+  "author": "Ganesh Prasad (GnsP)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GnsP/odia-keyboard/issues"
+  },
+  "homepage": "https://github.com/GnsP/odia-keyboard#readme"
+}
