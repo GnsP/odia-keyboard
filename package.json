@@ -1,6 +1,6 @@
 {
   "name": "odia-keyboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Odia phonetic input keyboard driver for web",
   "main": "src/odia-keyboard.js",
   "scripts": {
