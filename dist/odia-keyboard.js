@@ -459,5 +459,6 @@ var OdiaKeyboardDriver = function () {
     return OdiaKeyboardDriver;
   }();
 
+  window.OdiaKeyboardDriver = OdiaKeyboardDriver;
   return OdiaKeyboardDriver;
 }();

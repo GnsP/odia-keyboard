@@ -468,6 +468,8 @@ var OdiaKeyboardDriver = (function () {
 
   }
 
+  window.OdiaKeyboardDriver = OdiaKeyboardDriver;
+
   return OdiaKeyboardDriver;
 
 }());
