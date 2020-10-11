@@ -1,4 +1,8 @@
-export const ascii = {
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const ascii = {
   TAB:    9,
   SPACE:  32,
 
@@ -31,7 +35,7 @@ export const ascii = {
   u: 117, v: 118, w: 119, x: 120, y: 121, z: 122,
 };
 
-export const abstract = {
+const abstract = {
   VIRAM: 1,
   VRU: 2,
   RU: 3,
@@ -39,7 +43,7 @@ export const abstract = {
   ZWNJ: 5,
 };
 
-export const special = {
+const special = {
   [ascii.SPACE]:  ' ',
   [ascii.COLON]:  '\u0b03', // VISARGA
   [ascii.CAP]:    '\u0b01', // CHANDRA BINDU
@@ -55,7 +59,7 @@ export const special = {
   [abstract.ZWNJ]: '\u200c',
 };
 
-export const numeric = {
+const numeric = {
   [ascii.ZERO]:   '\u0b66',
   [ascii.ONE]:    '\u0b67',
   [ascii.TWO]:    '\u0b68',
@@ -68,7 +72,7 @@ export const numeric = {
   [ascii.NINE]:   '\u0b6f',
 };
 
-export const vowel = {
+const vowel = {
   [ascii.a]: '\u0b05',
   [ascii.A]: '\u0b06',
   [ascii.i]: '\u0b07',
@@ -81,7 +85,7 @@ export const vowel = {
   [ascii.o]: '\u0b13',
 };
 
-export const vowelCombination = [
+const vowelCombination = [
   [ascii.a, ascii.a, '\u0b06'],
   [ascii.e, ascii.e, '\u0b08'],
   [ascii.o, ascii.o, '\u0b0a'],
@@ -90,7 +94,7 @@ export const vowelCombination = [
   [ascii.a, ascii.u, '\u0b14'],
 ];
 
-export const consonant = {
+const consonant = {
   ...special,
 
   [ascii.k]: '\u0b15',
@@ -134,7 +138,7 @@ export const consonant = {
   [ascii.R]: '\u0b43',
 };
 
-export const consonantCombination = [
+const consonantCombination = [
   [ascii.k, ascii.h, '\u0b16'],
   [ascii.g, ascii.h, '\u0b18'],
   [ascii.c, ascii.h, '\u0b1a'],
@@ -163,9 +167,11 @@ export const consonantCombination = [
   [ascii.J, ascii.n, '\u0b1c\u0b4d\u0b1e'],
 ];
 
-
-
-
-
-
-
+exports.abstract = abstract;
+exports.ascii = ascii;
+exports.consonant = consonant;
+exports.consonantCombination = consonantCombination;
+exports.numeric = numeric;
+exports.special = special;
+exports.vowel = vowel;
+exports.vowelCombination = vowelCombination;
