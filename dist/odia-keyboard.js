@@ -2,7 +2,15 @@
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -25,7 +33,7 @@ var OdiaKeyboardDriver = function () {
 
   var _special, _numeric, _vowel, _objectSpread2;
 
-  var ascii = {
+  var ascii$1 = {
     TAB: 9,
     SPACE: 32,
     ZERO: 48,
@@ -102,112 +110,55 @@ var OdiaKeyboardDriver = function () {
     ZWJ: 4,
     ZWNJ: 5
   };
-  var special = (_special = {}, _defineProperty(_special, ascii.SPACE, ' '), _defineProperty(_special, ascii.COLON, "\u0B03"), _defineProperty(_special, ascii.CAP, "\u0B01"), _defineProperty(_special, ascii.M, "\u0B02"), _defineProperty(_special, ascii.TICK, "\u0B4D"), _defineProperty(_special, ascii.E, "\u0B3D"), _defineProperty(_special, ascii.V, "\u0B70"), _defineProperty(_special, ascii.Q, "\u0950"), _defineProperty(_special, ascii.q, "\u20B9"), _defineProperty(_special, abstract.VIRAM, "\u0B4D"), _defineProperty(_special, abstract.ZWJ, "\u200D"), _defineProperty(_special, abstract.ZWNJ, "\u200C"), _special);
-  var numeric = (_numeric = {}, _defineProperty(_numeric, ascii.ZERO, "\u0B66"), _defineProperty(_numeric, ascii.ONE, "\u0B67"), _defineProperty(_numeric, ascii.TWO, "\u0B68"), _defineProperty(_numeric, ascii.THREE, "\u0B69"), _defineProperty(_numeric, ascii.FOUR, "\u0B6A"), _defineProperty(_numeric, ascii.FIVE, "\u0B6B"), _defineProperty(_numeric, ascii.SIX, "\u0B6C"), _defineProperty(_numeric, ascii.SEVEN, "\u0B6D"), _defineProperty(_numeric, ascii.EIGHT, "\u0B6E"), _defineProperty(_numeric, ascii.NINE, "\u0B6F"), _numeric);
-  var vowel = (_vowel = {}, _defineProperty(_vowel, ascii.a, "\u0B05"), _defineProperty(_vowel, ascii.A, "\u0B06"), _defineProperty(_vowel, ascii.i, "\u0B07"), _defineProperty(_vowel, ascii.I, "\u0B08"), _defineProperty(_vowel, ascii.u, "\u0B09"), _defineProperty(_vowel, ascii.U, "\u0B0A"), _defineProperty(_vowel, ascii.R, "\u0B0B"), _defineProperty(_vowel, ascii.O, "\u0B0C"), _defineProperty(_vowel, ascii.e, "\u0B0F"), _defineProperty(_vowel, ascii.o, "\u0B13"), _vowel);
-  var vowelCombination = [[ascii.a, ascii.a, "\u0B06"], [ascii.e, ascii.e, "\u0B08"], [ascii.o, ascii.o, "\u0B0A"], [ascii.R, ascii.U, "\u0B0B"], [ascii.a, ascii.i, "\u0B10"], [ascii.a, ascii.u, "\u0B14"]];
+  var special = (_special = {}, _defineProperty(_special, ascii$1.SPACE, ' '), _defineProperty(_special, ascii$1.COLON, "\u0B03"), _defineProperty(_special, ascii$1.CAP, "\u0B01"), _defineProperty(_special, ascii$1.M, "\u0B02"), _defineProperty(_special, ascii$1.TICK, "\u0B4D"), _defineProperty(_special, ascii$1.E, "\u0B3D"), _defineProperty(_special, ascii$1.V, "\u0B70"), _defineProperty(_special, ascii$1.Q, "\u0950"), _defineProperty(_special, ascii$1.q, "\u20B9"), _defineProperty(_special, abstract.VIRAM, "\u0B4D"), _defineProperty(_special, abstract.ZWJ, "\u200D"), _defineProperty(_special, abstract.ZWNJ, "\u200C"), _special);
+  var numeric = (_numeric = {}, _defineProperty(_numeric, ascii$1.ZERO, "\u0B66"), _defineProperty(_numeric, ascii$1.ONE, "\u0B67"), _defineProperty(_numeric, ascii$1.TWO, "\u0B68"), _defineProperty(_numeric, ascii$1.THREE, "\u0B69"), _defineProperty(_numeric, ascii$1.FOUR, "\u0B6A"), _defineProperty(_numeric, ascii$1.FIVE, "\u0B6B"), _defineProperty(_numeric, ascii$1.SIX, "\u0B6C"), _defineProperty(_numeric, ascii$1.SEVEN, "\u0B6D"), _defineProperty(_numeric, ascii$1.EIGHT, "\u0B6E"), _defineProperty(_numeric, ascii$1.NINE, "\u0B6F"), _numeric);
+  var vowel = (_vowel = {}, _defineProperty(_vowel, ascii$1.a, "\u0B05"), _defineProperty(_vowel, ascii$1.A, "\u0B06"), _defineProperty(_vowel, ascii$1.i, "\u0B07"), _defineProperty(_vowel, ascii$1.I, "\u0B08"), _defineProperty(_vowel, ascii$1.u, "\u0B09"), _defineProperty(_vowel, ascii$1.U, "\u0B0A"), _defineProperty(_vowel, ascii$1.R, "\u0B0B"), _defineProperty(_vowel, ascii$1.O, "\u0B0C"), _defineProperty(_vowel, ascii$1.e, "\u0B0F"), _defineProperty(_vowel, ascii$1.o, "\u0B13"), _vowel);
+  var vowelCombination = [[ascii$1.a, ascii$1.a, "\u0B06"], [ascii$1.e, ascii$1.e, "\u0B08"], [ascii$1.o, ascii$1.o, "\u0B0A"], [ascii$1.R, ascii$1.U, "\u0B60"], [ascii$1.a, ascii$1.i, "\u0B10"], [ascii$1.a, ascii$1.u, "\u0B14"]];
 
-  var consonant = _objectSpread(_objectSpread({}, special), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, ascii.k, "\u0B15"), _defineProperty(_objectSpread2, ascii.g, "\u0B17"), _defineProperty(_objectSpread2, ascii.c, "\u0B1A"), _defineProperty(_objectSpread2, ascii.j, "\u0B1C"), _defineProperty(_objectSpread2, ascii.z, "\u0B1D"), _defineProperty(_objectSpread2, ascii.T, "\u0B1F"), _defineProperty(_objectSpread2, ascii.D, "\u0B21"), _defineProperty(_objectSpread2, ascii.N, "\u0B23"), _defineProperty(_objectSpread2, ascii.t, "\u0B24"), _defineProperty(_objectSpread2, ascii.d, "\u0B26"), _defineProperty(_objectSpread2, ascii.n, "\u0B28"), _defineProperty(_objectSpread2, ascii.p, "\u0B2A"), _defineProperty(_objectSpread2, ascii.f, "\u0B2B"), _defineProperty(_objectSpread2, ascii.b, "\u0B2C"), _defineProperty(_objectSpread2, ascii.v, "\u0B2D"), _defineProperty(_objectSpread2, ascii.m, "\u0B2E"), _defineProperty(_objectSpread2, ascii.y, "\u0B2F"), _defineProperty(_objectSpread2, ascii.r, "\u0B30"), _defineProperty(_objectSpread2, ascii.l, "\u0B32"), _defineProperty(_objectSpread2, ascii.L, "\u0B33"), _defineProperty(_objectSpread2, ascii.w, "\u0B35"), _defineProperty(_objectSpread2, ascii.W, "\u0B71"), _defineProperty(_objectSpread2, ascii.s, "\u0B38"), _defineProperty(_objectSpread2, ascii.x, "\u0B15\u0B4D\u0B37"), _defineProperty(_objectSpread2, ascii.h, "\u0B39"), _defineProperty(_objectSpread2, ascii.Y, "\u0B5F"), _defineProperty(_objectSpread2, ascii.a, ''), _defineProperty(_objectSpread2, ascii.A, "\u0B3E"), _defineProperty(_objectSpread2, ascii.i, "\u0B3F"), _defineProperty(_objectSpread2, ascii.I, "\u0B40"), _defineProperty(_objectSpread2, ascii.u, "\u0B41"), _defineProperty(_objectSpread2, ascii.U, "\u0B42"), _defineProperty(_objectSpread2, ascii.e, "\u0B47"), _defineProperty(_objectSpread2, ascii.O, "\u0B62"), _defineProperty(_objectSpread2, ascii.o, "\u0B4B"), _defineProperty(_objectSpread2, ascii.R, "\u0B43"), _objectSpread2));
+  var consonant = _objectSpread(_objectSpread({}, special), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, ascii$1.k, "\u0B15"), _defineProperty(_objectSpread2, ascii$1.g, "\u0B17"), _defineProperty(_objectSpread2, ascii$1.c, "\u0B1A"), _defineProperty(_objectSpread2, ascii$1.C, "\u0B1B"), _defineProperty(_objectSpread2, ascii$1.j, "\u0B1C"), _defineProperty(_objectSpread2, ascii$1.z, "\u0B1D"), _defineProperty(_objectSpread2, ascii$1.T, "\u0B1F"), _defineProperty(_objectSpread2, ascii$1.D, "\u0B21"), _defineProperty(_objectSpread2, ascii$1.N, "\u0B23"), _defineProperty(_objectSpread2, ascii$1.t, "\u0B24"), _defineProperty(_objectSpread2, ascii$1.d, "\u0B26"), _defineProperty(_objectSpread2, ascii$1.n, "\u0B28"), _defineProperty(_objectSpread2, ascii$1.p, "\u0B2A"), _defineProperty(_objectSpread2, ascii$1.f, "\u0B2B"), _defineProperty(_objectSpread2, ascii$1.b, "\u0B2C"), _defineProperty(_objectSpread2, ascii$1.v, "\u0B2D"), _defineProperty(_objectSpread2, ascii$1.m, "\u0B2E"), _defineProperty(_objectSpread2, ascii$1.y, "\u0B2F"), _defineProperty(_objectSpread2, ascii$1.r, "\u0B30"), _defineProperty(_objectSpread2, ascii$1.l, "\u0B32"), _defineProperty(_objectSpread2, ascii$1.L, "\u0B33"), _defineProperty(_objectSpread2, ascii$1.w, "\u0B35"), _defineProperty(_objectSpread2, ascii$1.W, "\u0B71"), _defineProperty(_objectSpread2, ascii$1.s, "\u0B38"), _defineProperty(_objectSpread2, ascii$1.S, "\u0B37"), _defineProperty(_objectSpread2, ascii$1.x, "\u0B15\u0B4D\u0B37"), _defineProperty(_objectSpread2, ascii$1.h, "\u0B39"), _defineProperty(_objectSpread2, ascii$1.Y, "\u0B5F"), _defineProperty(_objectSpread2, ascii$1.a, ''), _defineProperty(_objectSpread2, ascii$1.A, "\u0B3E"), _defineProperty(_objectSpread2, ascii$1.i, "\u0B3F"), _defineProperty(_objectSpread2, ascii$1.I, "\u0B40"), _defineProperty(_objectSpread2, ascii$1.u, "\u0B41"), _defineProperty(_objectSpread2, ascii$1.U, "\u0B42"), _defineProperty(_objectSpread2, ascii$1.e, "\u0B47"), _defineProperty(_objectSpread2, ascii$1.O, "\u0B62"), _defineProperty(_objectSpread2, ascii$1.o, "\u0B4B"), _defineProperty(_objectSpread2, ascii$1.R, "\u0B43"), _objectSpread2));
 
-  var consonantCombination = [[ascii.k, ascii.h, "\u0B16"], [ascii.g, ascii.h, "\u0B18"], [ascii.c, ascii.h, "\u0B1A"], [ascii.C, ascii.h, "\u0B1B"], [ascii.j, ascii.h, "\u0B1D"], [ascii.T, ascii.h, "\u0B20"], [ascii.D, ascii.h, "\u0B22"], [ascii.t, ascii.h, "\u0B25"], [ascii.d, ascii.h, "\u0B27"], [ascii.p, ascii.h, "\u0B2B"], [ascii.b, ascii.h, "\u0B2D"], [ascii.s, ascii.h, "\u0B36"], [ascii.S, ascii.h, "\u0B37"], [ascii.a, ascii.a, "\u0B3E"], [ascii.e, ascii.e, "\u0B40"], [ascii.o, ascii.o, "\u0B42"], [ascii.a, ascii.i, "\u0B48"], [ascii.a, ascii.u, "\u0B4C"], [ascii.R, ascii.U, "\u0B43"], [ascii.N, ascii.G, "\u0B19"], [ascii.N, ascii.Y, "\u0B1E"], [ascii.D, ascii.D, "\u0B5C"], [ascii.D, ascii.H, "\u0B5D"], [ascii.J, ascii.n, "\u0B1C\u0B4D\u0B1E"]];
+  var consonantCombination = [[ascii$1.k, ascii$1.h, "\u0B16"], [ascii$1.g, ascii$1.h, "\u0B18"], [ascii$1.c, ascii$1.h, "\u0B1A"], [ascii$1.C, ascii$1.h, "\u0B1B"], [ascii$1.j, ascii$1.h, "\u0B1D"], [ascii$1.T, ascii$1.h, "\u0B20"], [ascii$1.D, ascii$1.h, "\u0B22"], [ascii$1.t, ascii$1.h, "\u0B25"], [ascii$1.d, ascii$1.h, "\u0B27"], [ascii$1.p, ascii$1.h, "\u0B2B"], [ascii$1.b, ascii$1.h, "\u0B2D"], [ascii$1.s, ascii$1.h, "\u0B36"], [ascii$1.S, ascii$1.h, "\u0B37"], [ascii$1.a, ascii$1.a, "\u0B3E"], [ascii$1.e, ascii$1.e, "\u0B40"], [ascii$1.o, ascii$1.o, "\u0B42"], [ascii$1.a, ascii$1.i, "\u0B48"], [ascii$1.a, ascii$1.u, "\u0B4C"], [ascii$1.R, ascii$1.U, "\u0B43"], [ascii$1.N, ascii$1.G, "\u0B19"], [ascii$1.N, ascii$1.Y, "\u0B1E"], [ascii$1.D, ascii$1.D, "\u0B5C"], [ascii$1.D, ascii$1.H, "\u0B5D"], [ascii$1.J, ascii$1.n, "\u0B1C\u0B4D\u0B1E"]];
 
-  var nop = function nop() {
-    return true;
-  };
+  var FSM = /*#__PURE__*/function () {
+    function FSM() {
+      _classCallCheck(this, FSM);
 
-  var OdiaKeyboardDriver = /*#__PURE__*/function () {
-    function OdiaKeyboardDriver(el) {
-      var onChange = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : nop;
-      var onLangChange = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : nop;
-
-      _classCallCheck(this, OdiaKeyboardDriver);
-
-      this.el = el;
       this.isNative = false;
-
-      this.onChange = function (val) {
-        return onChange(val);
-      };
-
-      this.onLangChange = function (val) {
-        return onLangChange(val);
-      };
-
       this.reset();
-      this.init();
     }
 
-    _createClass(OdiaKeyboardDriver, [{
+    _createClass(FSM, [{
       key: "reset",
       value: function reset() {
-        this.prevKey = ascii.SPACE;
+        this.prevKey = ascii$1.SPACE;
         this.prevCons = false;
         this.prevPrevCons = false;
         this.hidden = false;
         this.posChanged = true;
       }
     }, {
-      key: "init",
-      value: function init() {
-        var _this = this;
-
-        document.body.addEventListener('keydown', function (e) {
-          if (_this.el.contains(e.target)) {
-            if (e.keyCode === ascii.TAB) {
-              e.preventDefault();
-
-              _this.toggleLang();
-
-              return;
-            }
-          }
-        });
-        this.el.addEventListener('keypress', this.handleKeyPress.bind(this));
-        this.el.addEventListener('keyup', this.changeCursor.bind(this));
-      }
-    }, {
       key: "toggleLang",
       value: function toggleLang() {
         this.reset();
         this.isNative = !this.isNative;
-        this.onLangChange(this.isNative ? 'native' : 'odia');
+        return this.isNative ? 'native' : 'odia';
       }
     }, {
-      key: "handleKeyPress",
-      value: function handleKeyPress(e) {
-        if (!this.isNative) {
-          this.modify(e);
-        }
-
-        this.onChange(this.el.value);
-      }
-    }, {
-      key: "changeCursor",
-      value: function changeCursor() {
-        if (this.el.createTextRange) {
-          this.el.cursorPos = document.selection.createRange().duplicate();
-        }
-
-        if (this.el.value.length === 0) this.reset();
-      }
-    }, {
-      key: "modify",
-      value: function modify(e) {
-        if (e.altKey || e.ctrlKey) return true;
+      key: "input",
+      value: function input(char) {
+        var noModifications = [0, char];
+        if (this.isNative) return noModifications;
         var dist = 0;
         var str = '';
-        var keycode = document.all ? e.keyCode : e.which;
+        var keycode = char.charCodeAt(0);
 
         if (!this.isAllowedKey(keycode)) {
           this.reset();
-          return true;
+          return noModifications;
         }
 
-        e.preventDefault();
-        var char = String.fromCharCode(keycode);
-
         if (this.posChanged) {
-          this.prevKey = ascii.SPACE;
+          this.prevKey = ascii$1.SPACE;
           this.hidden = false;
           this.prevCons = false;
           this.prevPrevCons = false;
@@ -377,36 +328,8 @@ var OdiaKeyboardDriver = function () {
         }
 
         this.prevKey = keycode;
-        var val = this.el.value;
-        var len = val.length;
-
-        if (this.el.setSelectionRange) {
-          var start = this.el.selectionStart;
-          var left = val.substring(0, start + dist);
-          var right = val.substring(start, len);
-          var top = this.el.scrollTop;
-          var end = str !== undefined ? start + dist + str.length : start + dist;
-          this.el.value = left + str + right;
-          this.el.scrollTop = top;
-          this.el.focus();
-          this.el.setSelectionRange(end, end);
-        } else if (this.el.createTextRange && this.el.cursorPos) {
-          var pos = this.el.cursorPos;
-          pos.moveStart('character', dist);
-          pos.text = pos.text.charAt(pos.text.length - 1) === ' ' ? str + ' ' : str;
-          pos.collapse(false);
-          pos.scrollIntoView(true);
-        } else {
-          if (dist === 0) {
-            this.el.value += str;
-          } else {
-            this.el.value = val.substring(0, len - 1) + str;
-          }
-        }
-
-        this.el.focus();
         this.posChanged = false;
-        return false;
+        return [dist, str];
       }
     }, {
       key: "isAllowedKey",
@@ -453,6 +376,122 @@ var OdiaKeyboardDriver = function () {
         } finally {
           _iterator2.f();
         }
+      }
+    }]);
+
+    return FSM;
+  }();
+
+  var nop = function nop() {
+    return true;
+  };
+
+  var OdiaKeyboardDriver = /*#__PURE__*/function () {
+    function OdiaKeyboardDriver(el) {
+      var onChange = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : nop;
+      var onLangChange = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : nop;
+
+      _classCallCheck(this, OdiaKeyboardDriver);
+
+      this.el = el;
+      this.fsm = new FSM();
+
+      this.onChange = function (val) {
+        return onChange(val);
+      };
+
+      this.onLangChange = function (val) {
+        return onLangChange(val);
+      };
+
+      this.init();
+    }
+
+    _createClass(OdiaKeyboardDriver, [{
+      key: "init",
+      value: function init() {
+        var _this = this;
+
+        document.body.addEventListener('keydown', function (e) {
+          if (_this.el.contains(e.target)) {
+            if (e.keyCode === ascii.TAB) {
+              e.preventDefault();
+
+              _this.toggleLang();
+
+              return;
+            }
+          }
+        });
+        this.el.addEventListener('keypress', this.handleKeyPress.bind(this));
+        this.el.addEventListener('keyup', this.changeCursor.bind(this));
+      }
+    }, {
+      key: "toggleLang",
+      value: function toggleLang() {
+        var lang = this.fsm.toggleLang();
+        this.onLangChange(lang);
+      }
+    }, {
+      key: "handleKeyPress",
+      value: function handleKeyPress(e) {
+        if (!this.isNative) {
+          this.modify(e);
+        }
+
+        this.onChange(this.el.value);
+      }
+    }, {
+      key: "changeCursor",
+      value: function changeCursor() {
+        if (this.el.createTextRange) {
+          this.el.cursorPos = document.selection.createRange().duplicate();
+        }
+
+        if (this.el.value.length === 0) this.fsm.reset();
+      }
+    }, {
+      key: "modify",
+      value: function modify(e) {
+        if (e.altKey || e.ctrlKey) return true;
+        e.preventDefault();
+        var keycode = document.all ? e.keyCode : e.which;
+        var char = String.fromCharCode(keycode);
+
+        var _this$fsm$input = this.fsm.input(char),
+            _this$fsm$input2 = _slicedToArray(_this$fsm$input, 2),
+            dist = _this$fsm$input2[0],
+            str = _this$fsm$input2[1];
+
+        var val = this.el.value;
+        var len = val.length;
+
+        if (this.el.setSelectionRange) {
+          var start = this.el.selectionStart;
+          var left = val.substring(0, start + dist);
+          var right = val.substring(start, len);
+          var top = this.el.scrollTop;
+          var end = str !== undefined ? start + dist + str.length : start + dist;
+          this.el.value = left + str + right;
+          this.el.scrollTop = top;
+          this.el.focus();
+          this.el.setSelectionRange(end, end);
+        } else if (this.el.createTextRange && this.el.cursorPos) {
+          var pos = this.el.cursorPos;
+          pos.moveStart('character', dist);
+          pos.text = pos.text.charAt(pos.text.length - 1) === ' ' ? str + ' ' : str;
+          pos.collapse(false);
+          pos.scrollIntoView(true);
+        } else {
+          if (dist === 0) {
+            this.el.value += str;
+          } else {
+            this.el.value = val.substring(0, len - 1) + str;
+          }
+        }
+
+        this.el.focus();
+        return false;
       }
     }]);
 
