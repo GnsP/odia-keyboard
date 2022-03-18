@@ -5,6 +5,11 @@
   "main": "src/odia-keyboard.js",
   "type": "module",
   "scripts": {
+    "build-iife": "rollup src/index.js --file lib.js --format iife --name OdiaKeyboardDriver && mv lib.js dist/odia-keyboard.es6.js",
+    "build-es": "rollup src/* --dir es --format cjs",
+    "build-es5": "babel --presets=es2015,stage-2,env dist/odia-keyboard.es6.js -o dist/odia-keyboard.js",
+    "build-min": "terser dist/odia-keyboard.js -c -m -o dist/odia-keyboard.min.js",
+    "build": "npm run build-es && npm run build-iife && npm run build-es5 && npm run build-min",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +27,14 @@
   "bugs": {
     "url": "https://github.com/GnsP/odia-keyboard/issues"
   },
-  "homepage": "https://github.com/GnsP/odia-keyboard#readme"
+  "homepage": "https://github.com/GnsP/odia-keyboard#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "rollup": "^2.70.1",
+    "terser": "^5.12.1"
+  }
 }

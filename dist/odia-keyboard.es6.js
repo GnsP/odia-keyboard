@@ -1,7 +1,7 @@
 var OdiaKeyboardDriver = (function () {
   'use strict';
 
-  const ascii$1 = {
+  const ascii = {
     TAB:    9,
     SPACE:  32,
 
@@ -43,15 +43,15 @@ var OdiaKeyboardDriver = (function () {
   };
 
   const special = {
-    [ascii$1.SPACE]:  ' ',
-    [ascii$1.COLON]:  '\u0b03', // VISARGA
-    [ascii$1.CAP]:    '\u0b01', // CHANDRA BINDU
-    [ascii$1.M]:      '\u0b02', // ANUSWAR
-    [ascii$1.TICK]:   '\u0b4d', // HALANT
-    [ascii$1.E]:      '\u0b3d', // ABAGRAHA
-    [ascii$1.V]:      '\u0b70', // ISSHAR
-    [ascii$1.Q]:      '\u0950', // OMM
-    [ascii$1.q]:      '\u20b9', // RUPEE
+    [ascii.SPACE]:  ' ',
+    [ascii.COLON]:  '\u0b03', // VISARGA
+    [ascii.CAP]:    '\u0b01', // CHANDRA BINDU
+    [ascii.M]:      '\u0b02', // ANUSWAR
+    [ascii.TICK]:   '\u0b4d', // HALANT
+    [ascii.E]:      '\u0b3d', // ABAGRAHA
+    [ascii.V]:      '\u0b70', // ISSHAR
+    [ascii.Q]:      '\u0950', // OMM
+    [ascii.q]:      '\u20b9', // RUPEE
 
     [abstract.VIRAM]: '\u0b4d',
     [abstract.ZWJ]: '\u200d',
@@ -59,111 +59,111 @@ var OdiaKeyboardDriver = (function () {
   };
 
   const numeric = {
-    [ascii$1.ZERO]:   '\u0b66',
-    [ascii$1.ONE]:    '\u0b67',
-    [ascii$1.TWO]:    '\u0b68',
-    [ascii$1.THREE]:  '\u0b69',
-    [ascii$1.FOUR]:   '\u0b6a',
-    [ascii$1.FIVE]:   '\u0b6b',
-    [ascii$1.SIX]:    '\u0b6c',
-    [ascii$1.SEVEN]:  '\u0b6d',
-    [ascii$1.EIGHT]:  '\u0b6e',
-    [ascii$1.NINE]:   '\u0b6f',
+    [ascii.ZERO]:   '\u0b66',
+    [ascii.ONE]:    '\u0b67',
+    [ascii.TWO]:    '\u0b68',
+    [ascii.THREE]:  '\u0b69',
+    [ascii.FOUR]:   '\u0b6a',
+    [ascii.FIVE]:   '\u0b6b',
+    [ascii.SIX]:    '\u0b6c',
+    [ascii.SEVEN]:  '\u0b6d',
+    [ascii.EIGHT]:  '\u0b6e',
+    [ascii.NINE]:   '\u0b6f',
   };
 
   const vowel = {
-    [ascii$1.a]: '\u0b05',
-    [ascii$1.A]: '\u0b06',
-    [ascii$1.i]: '\u0b07',
-    [ascii$1.I]: '\u0b08',
-    [ascii$1.u]: '\u0b09',
-    [ascii$1.U]: '\u0b0a',
-    [ascii$1.R]: '\u0b0b',
-    [ascii$1.O]: '\u0b0c',
-    [ascii$1.e]: '\u0b0f',
-    [ascii$1.o]: '\u0b13',
+    [ascii.a]: '\u0b05',
+    [ascii.A]: '\u0b06',
+    [ascii.i]: '\u0b07',
+    [ascii.I]: '\u0b08',
+    [ascii.u]: '\u0b09',
+    [ascii.U]: '\u0b0a',
+    [ascii.R]: '\u0b0b',
+    [ascii.O]: '\u0b0c',
+    [ascii.e]: '\u0b0f',
+    [ascii.o]: '\u0b13',
   };
 
   const vowelCombination = [
-    [ascii$1.a, ascii$1.a, '\u0b06'],
-    [ascii$1.e, ascii$1.e, '\u0b08'],
-    [ascii$1.o, ascii$1.o, '\u0b0a'],
-    [ascii$1.R, ascii$1.U, '\u0b60'],
-    [ascii$1.a, ascii$1.i, '\u0b10'],
-    [ascii$1.a, ascii$1.u, '\u0b14'],
+    [ascii.a, ascii.a, '\u0b06'],
+    [ascii.e, ascii.e, '\u0b08'],
+    [ascii.o, ascii.o, '\u0b0a'],
+    [ascii.R, ascii.U, '\u0b60'],
+    [ascii.a, ascii.i, '\u0b10'],
+    [ascii.a, ascii.u, '\u0b14'],
   ];
 
   const consonant = {
     ...special,
 
-    [ascii$1.k]: '\u0b15',
-    [ascii$1.g]: '\u0b17',
-    [ascii$1.c]: '\u0b1a',
-    [ascii$1.C]: '\u0b1b',
-    [ascii$1.j]: '\u0b1c',
-    [ascii$1.z]: '\u0b1d',
-    [ascii$1.T]: '\u0b1f',
-    [ascii$1.D]: '\u0b21',
-    [ascii$1.N]: '\u0b23',
-    [ascii$1.t]: '\u0b24',
-    [ascii$1.d]: '\u0b26',
-    [ascii$1.n]: '\u0b28',
-    [ascii$1.p]: '\u0b2a',
-    [ascii$1.f]: '\u0b2b',
-    [ascii$1.b]: '\u0b2c',
-    [ascii$1.v]: '\u0b2d',
-    [ascii$1.m]: '\u0b2e',
-    [ascii$1.y]: '\u0b2f',
-    [ascii$1.r]: '\u0b30',
-    [ascii$1.l]: '\u0b32',
-    [ascii$1.L]: '\u0b33',
-    [ascii$1.w]: '\u0b35',
-    [ascii$1.W]: '\u0b71',
-    [ascii$1.s]: '\u0b38',
-    [ascii$1.S]: '\u0b37',
-    [ascii$1.x]: '\u0b15\u0b4d\u0b37',
-    [ascii$1.h]: '\u0b39',
-    [ascii$1.Y]: '\u0b5f',
+    [ascii.k]: '\u0b15',
+    [ascii.g]: '\u0b17',
+    [ascii.c]: '\u0b1a',
+    [ascii.C]: '\u0b1b',
+    [ascii.j]: '\u0b1c',
+    [ascii.z]: '\u0b1d',
+    [ascii.T]: '\u0b1f',
+    [ascii.D]: '\u0b21',
+    [ascii.N]: '\u0b23',
+    [ascii.t]: '\u0b24',
+    [ascii.d]: '\u0b26',
+    [ascii.n]: '\u0b28',
+    [ascii.p]: '\u0b2a',
+    [ascii.f]: '\u0b2b',
+    [ascii.b]: '\u0b2c',
+    [ascii.v]: '\u0b2d',
+    [ascii.m]: '\u0b2e',
+    [ascii.y]: '\u0b2f',
+    [ascii.r]: '\u0b30',
+    [ascii.l]: '\u0b32',
+    [ascii.L]: '\u0b33',
+    [ascii.w]: '\u0b35',
+    [ascii.W]: '\u0b71',
+    [ascii.s]: '\u0b38',
+    [ascii.S]: '\u0b37',
+    [ascii.x]: '\u0b15\u0b4d\u0b37',
+    [ascii.h]: '\u0b39',
+    [ascii.Y]: '\u0b5f',
 
-    [ascii$1.a]: '',
-    [ascii$1.A]: '\u0b3e',
-    [ascii$1.i]: '\u0b3f',
-    [ascii$1.I]: '\u0b40',
-    [ascii$1.u]: '\u0b41',
-    [ascii$1.U]: '\u0b42',
-    [ascii$1.e]: '\u0b47',
-    [ascii$1.O]: '\u0b62',
-    [ascii$1.o]: '\u0b4b',
-    [ascii$1.R]: '\u0b43',
+    [ascii.a]: '',
+    [ascii.A]: '\u0b3e',
+    [ascii.i]: '\u0b3f',
+    [ascii.I]: '\u0b40',
+    [ascii.u]: '\u0b41',
+    [ascii.U]: '\u0b42',
+    [ascii.e]: '\u0b47',
+    [ascii.O]: '\u0b62',
+    [ascii.o]: '\u0b4b',
+    [ascii.R]: '\u0b43',
   };
 
   const consonantCombination = [
-    [ascii$1.k, ascii$1.h, '\u0b16'],
-    [ascii$1.g, ascii$1.h, '\u0b18'],
-    [ascii$1.c, ascii$1.h, '\u0b1a'],
-    [ascii$1.C, ascii$1.h, '\u0b1b'],
-    [ascii$1.j, ascii$1.h, '\u0b1d'],
-    [ascii$1.T, ascii$1.h, '\u0b20'],
-    [ascii$1.D, ascii$1.h, '\u0b22'],
-    [ascii$1.t, ascii$1.h, '\u0b25'],
-    [ascii$1.d, ascii$1.h, '\u0b27'],
-    [ascii$1.p, ascii$1.h, '\u0b2b'],
-    [ascii$1.b, ascii$1.h, '\u0b2d'],
-    [ascii$1.s, ascii$1.h, '\u0b36'],
-    [ascii$1.S, ascii$1.h, '\u0b37'],
+    [ascii.k, ascii.h, '\u0b16'],
+    [ascii.g, ascii.h, '\u0b18'],
+    [ascii.c, ascii.h, '\u0b1a'],
+    [ascii.C, ascii.h, '\u0b1b'],
+    [ascii.j, ascii.h, '\u0b1d'],
+    [ascii.T, ascii.h, '\u0b20'],
+    [ascii.D, ascii.h, '\u0b22'],
+    [ascii.t, ascii.h, '\u0b25'],
+    [ascii.d, ascii.h, '\u0b27'],
+    [ascii.p, ascii.h, '\u0b2b'],
+    [ascii.b, ascii.h, '\u0b2d'],
+    [ascii.s, ascii.h, '\u0b36'],
+    [ascii.S, ascii.h, '\u0b37'],
 
-    [ascii$1.a, ascii$1.a, '\u0b3e'],
-    [ascii$1.e, ascii$1.e, '\u0b40'],
-    [ascii$1.o, ascii$1.o, '\u0b42'],
-    [ascii$1.a, ascii$1.i, '\u0b48'],
-    [ascii$1.a, ascii$1.u, '\u0b4c'],
-    [ascii$1.R, ascii$1.U, '\u0b43'],
+    [ascii.a, ascii.a, '\u0b3e'],
+    [ascii.e, ascii.e, '\u0b40'],
+    [ascii.o, ascii.o, '\u0b42'],
+    [ascii.a, ascii.i, '\u0b48'],
+    [ascii.a, ascii.u, '\u0b4c'],
+    [ascii.R, ascii.U, '\u0b43'],
 
-    [ascii$1.N, ascii$1.G, '\u0b19'],
-    [ascii$1.N, ascii$1.Y, '\u0b1e'],
-    [ascii$1.D, ascii$1.D, '\u0b5c'],
-    [ascii$1.D, ascii$1.H, '\u0b5d'],
-    [ascii$1.J, ascii$1.n, '\u0b1c\u0b4d\u0b1e'],
+    [ascii.N, ascii.G, '\u0b19'],
+    [ascii.N, ascii.Y, '\u0b1e'],
+    [ascii.D, ascii.D, '\u0b5c'],
+    [ascii.D, ascii.H, '\u0b5d'],
+    [ascii.J, ascii.n, '\u0b1c\u0b4d\u0b1e'],
   ];
 
   class FSM {
@@ -173,7 +173,7 @@ var OdiaKeyboardDriver = (function () {
     }
 
     reset () {
-      this.prevKey = ascii$1.SPACE;
+      this.prevKey = ascii.SPACE;
       this.prevCons = false;
       this.prevPrevCons = false;
 
@@ -201,7 +201,7 @@ var OdiaKeyboardDriver = (function () {
       }
 
       if (this.posChanged) {
-        this.prevKey = ascii$1.SPACE;
+        this.prevKey = ascii.SPACE;
         this.hidden = false;
         this.prevCons = false;
         this.prevPrevCons = false;
@@ -295,7 +295,7 @@ var OdiaKeyboardDriver = (function () {
           break;
 
         case '~':
-          str = this.prevCons ? consonant[abstract.VIRAM] + consonant[abstract.ZWJ] : '~';
+          str = this.prevCons ? consonant[abstract.VIRAM] + consonant[abstract.ZWNJ] : '~';
           this.prevPrevCons = this.prevCons;
           this.prevCons = false;
           this.hidden = false;
@@ -493,4 +493,4 @@ var OdiaKeyboardDriver = (function () {
 
   return OdiaKeyboardDriver;
 
-}());
+})();

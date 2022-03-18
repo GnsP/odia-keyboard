@@ -137,7 +137,7 @@ export default class FSM {
         break;
 
       case '~':
-        str = this.prevCons ? consonant[abstract.VIRAM] + consonant[abstract.ZWJ] : '~';
+        str = this.prevCons ? consonant[abstract.VIRAM] + consonant[abstract.ZWNJ] : '~';
         this.prevPrevCons = this.prevCons;
         this.prevCons = false;
         this.hidden = false;

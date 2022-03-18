@@ -1,3 +1,4 @@
+import { ascii } from './chars';
 import FSM from './fsm';
 
 const nop = () => true;
