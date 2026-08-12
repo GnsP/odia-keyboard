@@ -56,7 +56,7 @@ var OdiaKeyboardDriver = function () {
     ZWNJ: 5
   };
 
-  var special = (_special = {}, _defineProperty(_special, ascii.SPACE, ' '), _defineProperty(_special, ascii.COLON, '\u0B03'), _defineProperty(_special, ascii.CAP, '\u0B01'), _defineProperty(_special, ascii.M, '\u0B02'), _defineProperty(_special, ascii.TICK, '\u0B4D'), _defineProperty(_special, ascii.E, '\u0B3D'), _defineProperty(_special, ascii.V, '\u0B70'), _defineProperty(_special, ascii.Q, '\u0950'), _defineProperty(_special, ascii.q, '\u20B9'), _defineProperty(_special, abstract.VIRAM, '\u0B4D'), _defineProperty(_special, abstract.ZWJ, '\u200D'), _defineProperty(_special, abstract.ZWNJ, '\u200C'), _special);
+  var special = (_special = {}, _defineProperty(_special, ascii.SPACE, ' '), _defineProperty(_special, ascii.COLON, '\u0B03'), _defineProperty(_special, ascii.CAP, '\u0B01'), _defineProperty(_special, ascii.M, '\u0B02'), _defineProperty(_special, ascii.TICK, '\u0B4D'), _defineProperty(_special, ascii.E, '\u0B3D'), _defineProperty(_special, ascii.V, '\u0B70'), _defineProperty(_special, ascii.Q, '\u0950'), _defineProperty(_special, ascii.q, '\u20B9'), _defineProperty(_special, ascii.H, '\u200C'), _defineProperty(_special, abstract.VIRAM, '\u0B4D'), _defineProperty(_special, abstract.ZWJ, '\u200D'), _defineProperty(_special, abstract.ZWNJ, '\u200C'), _special);
 
   var numeric = (_numeric = {}, _defineProperty(_numeric, ascii.ZERO, '\u0B66'), _defineProperty(_numeric, ascii.ONE, '\u0B67'), _defineProperty(_numeric, ascii.TWO, '\u0B68'), _defineProperty(_numeric, ascii.THREE, '\u0B69'), _defineProperty(_numeric, ascii.FOUR, '\u0B6A'), _defineProperty(_numeric, ascii.FIVE, '\u0B6B'), _defineProperty(_numeric, ascii.SIX, '\u0B6C'), _defineProperty(_numeric, ascii.SEVEN, '\u0B6D'), _defineProperty(_numeric, ascii.EIGHT, '\u0B6E'), _defineProperty(_numeric, ascii.NINE, '\u0B6F'), _numeric);
 
@@ -190,6 +190,7 @@ var OdiaKeyboardDriver = function () {
           case 'V':
           case 'q':
           case 'Q':
+          case 'H':
             str = consonant[keycode];
             this.prevPrevCons = this.prevCons;
             this.prevCons = false;

@@ -49,6 +49,7 @@ export const special = {
   [ascii.V]:      '\u0b70', // ISSHAR
   [ascii.Q]:      '\u0950', // OMM
   [ascii.q]:      '\u20b9', // RUPEE
+  [ascii.H]:      '\u200c', // ZWNJ
 
   [abstract.VIRAM]: '\u0b4d',
   [abstract.ZWJ]: '\u200d',

@@ -123,6 +123,7 @@ export default class FSM {
       case 'V':
       case 'q':
       case 'Q':
+      case 'H':
         str = consonant[keycode];
         this.prevPrevCons = this.prevCons;
         this.prevCons = false;

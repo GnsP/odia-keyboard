@@ -117,6 +117,7 @@ class FSM {
       case 'V':
       case 'q':
       case 'Q':
+      case 'H':
         str = chars.consonant[keycode];
         this.prevPrevCons = this.prevCons;
         this.prevCons = false;
