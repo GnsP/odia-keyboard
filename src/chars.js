@@ -160,7 +160,7 @@ export const consonantCombination = [
   [ascii.N, ascii.G, '\u0b19'],
   [ascii.N, ascii.Y, '\u0b1e'],
   [ascii.D, ascii.D, '\u0b5c'],
-  [ascii.D, ascii.H, '\u0b5d'],
+  [ascii.D, ascii.z, '\u0b5d'],
   [ascii.J, ascii.n, '\u0b1c\u0b4d\u0b1e'],
 ];
 
